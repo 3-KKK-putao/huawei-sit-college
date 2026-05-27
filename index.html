@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>华为-沈工现代产业学院</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            background: #0a0e1a;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== Scroll Container ===== */
+        .page-container {
+            max-width: 100vw;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ===== Section Base ===== */
+        .section {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ===== Screen 1: Hero ===== */
+        .hero-section {
+            background: linear-gradient(180deg, rgba(10,14,26,0.3) 0%, rgba(10,14,26,0.6) 40%, rgba(10,14,26,0.95) 100%);
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(10,14,26,0.2) 0%, 
+                rgba(10,14,26,0.4) 30%, 
+                rgba(10,14,26,0.85) 70%, 
+                rgba(10,14,26,1) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border: 1px solid rgba(207, 10, 44, 0.6);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #ff4d6a;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            background: rgba(207, 10, 44, 0.08);
+        }
+
+        .hero-title-cn {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e6f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title-en {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #cf0a2c, transparent);
+            margin: 0 auto 32px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 1.5px solid rgba(255,255,255,0.3);
+            border-bottom: 1.5px solid rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+        }
+
+        /* ===== Screen 2: Introduction ===== */
+        .intro-section {
+            background: linear-gradient(180deg, #0a0e1a 0%, #0d1225 50%, #0a0e1a 100%);
+            padding: 60px 24px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: #cf0a2c;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: #cf0a2c;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+
+        .intro-block {
+            margin-bottom: 40px;
+        }
+
+        .intro-block-title {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .intro-text {
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.75);
+            text-align: justify;
+        }
+
+        .intro-text-en {
+            font-size: 13px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.5);
+            text-align: justify;
+        }
+
+        .lang-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 32px 0;
+        }
+
+        /* ===== Screen 3: Highlights ===== */
+        .highlights-section {
+            background: linear-gradient(180deg, #0a0e1a 0%, #0f1628 50%, #0a0e1a 100%);
+            padding: 60px 24px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #cf0a2c, transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .highlight-card:active::before {
+            opacity: 1;
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .highlight-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #cf0a2c;
+            margin-bottom: 4px;
+        }
+
+        .highlight-unit {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 8px;
+        }
+
+        .highlight-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 6px;
+        }
+
+        .highlight-desc {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+        }
+
+        .highlight-card-wide {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .highlight-card-wide .highlight-icon {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .highlight-card-wide .highlight-info {
+            flex: 1;
+        }
+
+        /* Lab Images */
+        .lab-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .lab-img-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+        }
+
+        .lab-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lab-img-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ===== Screen 4: Photo Carousel ===== */
+        .carousel-section {
+            background: #0a0e1a;
+            padding: 60px 0;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 20px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            font-size: 13px;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 1px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .carousel-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .carousel-btn:active {
+            background: rgba(207, 10, 44, 0.2);
+            border-color: #cf0a2c;
+            color: #fff;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            width: 24px;
+            background: #cf0a2c;
+        }
+
+        /* ===== Screen 5: QR Code & Ending ===== */
+        .ending-section {
+            background: linear-gradient(180deg, #0a0e1a 0%, #0d1225 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+
+        .ending-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            font-size: 24px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .ending-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 3px;
+        }
+
+        .ending-subtitle {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .qr-container {
+            display: inline-block;
+            padding: 20px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .qr-container img {
+            width: 160px;
+            height: 160px;
+            display: block;
+        }
+
+        .qr-hint {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .ending-message {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.6);
+            max-width: 300px;
+            margin: 0 auto 40px;
+        }
+
+        .ending-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0 auto 24px;
+        }
+
+        .ending-footer {
+            font-size: 11px;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Particles ===== */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(207, 10, 44, 0.3);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* ===== Responsive ===== */
+        @media (min-width: 414px) {
+            .hero-title-cn {
+                font-size: 42px;
+            }
+            .hero-subtitle {
+                font-size: 24px;
+            }
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        /* Touch optimization */
+        .carousel-slide {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Smooth scroll snap for mobile */
+        .page-container {
+            scroll-snap-type: y proximity;
+        }
+
+        .section {
+            scroll-snap-align: start;
+        }
+
+        /* ===== Navigation Bar ===== */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 16px;
+        }
+
+        .nav-bar.visible {
+            transform: translateY(0);
+        }
+
+        .nav-logo {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #cf0a2c, #ff4d6a);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            margin-left: 32px;
+        }
+
+        .nav-link {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link:hover {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .nav-link.active {
+            color: #cf0a2c;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #cf0a2c;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ===== Progress Indicator ===== */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #cf0a2c, #ff4d6a);
+            z-index: 999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ===== Section Dots (Side Navigation) ===== */
+        .section-dots {
+            position: fixed;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .section-dots.visible {
+            opacity: 1;
+        }
+
+        .section-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .section-dot:hover {
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.2);
+        }
+
+        .section-dot.active {
+            background: #cf0a2c;
+            box-shadow: 0 0 8px rgba(207, 10, 44, 0.5);
+        }
+
+        .section-dot-tooltip {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 14, 26, 0.9);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .section-dot:hover .section-dot-tooltip {
+            opacity: 1;
+        }
+
+        /* ===== Back to Top Button ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(207, 10, 44, 0.8);
+            border: none;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(207, 10, 44, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #cf0a2c;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(207, 10, 44, 0.4);
+        }
+
+        .back-to-top-icon {
+            width: 20px;
+            height: 20px;
+            border-left: 2px solid #fff;
+            border-top: 2px solid #fff;
+            transform: rotate(45deg);
+            margin-top: 4px;
+        }
+
+        /* ===== Enhanced Card Animations ===== */
+        .highlight-card {
+            cursor: pointer;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(207, 10, 44, 0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .highlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .highlight-card:hover .highlight-icon {
+            transform: scale(1.1);
+        }
+
+        .highlight-icon {
+            transition: transform 0.3s;
+        }
+
+        /* ===== Number Counter Animation ===== */
+        .counter-number {
+            display: inline-block;
+        }
+
+        /* ===== Stagger Animation ===== */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stagger-item.visible {
+            animation: staggerFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Parallax Effect ===== */
+        .parallax-bg {
+            transition: transform 0.1s linear;
+        }
+
+        /* ===== Glow Effect ===== */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(207, 10, 44, 0.2), transparent, rgba(207, 10, 44, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+
+        /* ===== Pulse Animation ===== */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ===== Shimmer Effect ===== */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(255,255,255,1) 50%, 
+                rgba(255,255,255,0.8) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== Navigation Bar ===== -->
+    <nav class="nav-bar" id="navBar">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">H</div>
+            <span>华为-沈工学院</span>
+        </div>
+        <div class="nav-links">
+            <span class="nav-link active" data-section="hero">首页</span>
+            <span class="nav-link" data-section="intro">简介</span>
+            <span class="nav-link" data-section="highlights">亮点</span>
+            <span class="nav-link" data-section="gallery">风采</span>
+            <span class="nav-link" data-section="ending">联系</span>
+        </div>
+    </nav>
+
+    <!-- ===== Progress Bar ===== -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ===== Section Dots ===== -->
+    <div class="section-dots" id="sectionDots">
+        <div class="section-dot active" data-section="hero">
+            <span class="section-dot-tooltip">首页</span>
+        </div>
+        <div class="section-dot" data-section="intro">
+            <span class="section-dot-tooltip">简介</span>
+        </div>
+        <div class="section-dot" data-section="highlights">
+            <span class="section-dot-tooltip">亮点</span>
+        </div>
+        <div class="section-dot" data-section="gallery">
+            <span class="section-dot-tooltip">风采</span>
+        </div>
+        <div class="section-dot" data-section="ending">
+            <span class="section-dot-tooltip">联系</span>
+        </div>
+    </div>
+
+    <!-- ===== Back to Top ===== -->
+    <button class="back-to-top" id="backToTop">
+        <div class="back-to-top-icon"></div>
+    </button>
+
+    <div class="page-container">
+        <!-- ===== Screen 1: Hero ===== -->
+        <section class="section hero-section" id="hero">
+            <img src="images/bg.jpg" alt="华为-沈工现代产业学院" class="hero-bg">
+            <div class="hero-overlay"></div>
+            <div class="particles" id="particles"></div>
+            <div class="hero-content">
+                <div class="hero-badge">ICT TALENT DEMONSTRATION SITE</div>
+                <h1 class="hero-title-cn">华为-沈工现代产业学院</h1>
+                <p class="hero-title-en">Huawei-SIT Modern Industrial College</p>
+                <div class="hero-divider"></div>
+                <p class="hero-subtitle">沈阳工学院 · SIT</p>
+            </div>
+            <div class="scroll-indicator">
+                <span>向上滑动探索</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ===== Screen 2: Introduction ===== -->
+        <section class="section intro-section" id="intro">
+            <div class="animate-on-scroll">
+                <div class="section-label">ABOUT US</div>
+                <h2 class="section-title">学院简介</h2>
+            </div>
+            
+            <div class="animate-on-scroll">
+                <div class="intro-block">
+                    <div class="intro-block-title">中文简介</div>
+                    <p class="intro-text">
+                        华为－沈工现代产业学院是沈阳工学院与华为共建的ICT人才培养全球样板点，于2024年建成，总面积超5000平方米。学院设有26间专业实验室，涵盖鸿蒙开发、昇腾人工智能、鲲鹏云计算、5G通信等前沿领域，并配套VUE考试中心；配备华为昇腾GPU服务器、核心交换机、鸿蒙智能实践台、大模型实践箱等数十种先进设备，构建了教学、科研、实践一体化的创新平台。
+                    </p>
+                    <p class="intro-text" style="margin-top: 16px;">
+                        同时建有2间星辰联合创新实验室，具备全栈能力、边学边练、六位一体等特色，融合多重仿真、真实案例与自动测评，依托智能物联边缘计算平台支持场景叠加与以赛促学。
+                    </p>
+                    <p class="intro-text" style="margin-top: 16px;">
+                        学院依托华为自主技术体系，深化产教融合，通过政校企协同提升社会服务能力，面向在校生及社会人员开设华为认证培训、场景化项目实践及数字化领导力研修班，培养ICT复合型与数字化管理人才。
+                    </p>
+                </div>
+            </div>
+
+            <div class="lang-divider"></div>
+
+            <div class="animate-on-scroll">
+                <div class="intro-block">
+                    <div class="intro-block-title">English Introduction</div>
+                    <p class="intro-text-en">
+                        Huawei-SIT Modern Industrial College is a global demonstration site for ICT talent cultivation, jointly established by Shenyang Institute of Technology and Huawei. Completed in 2024, it covers an area of over 5,000 square meters. The college features 26 specialized laboratories in cutting-edge fields such as HarmonyOS development, Ascend AI, Kunpeng cloud computing, and 5G communication, along with a VUE exam center. It is also equipped with a wide range of advanced facilities, including Huawei Ascend GPU servers, core switches, HarmonyOS smart experiment platforms, and large-model practice kits, creating an integrated innovation platform for teaching, research, and practice.
+                    </p>
+                    <p class="intro-text-en" style="margin-top: 16px;">
+                        The college also houses two Xingchen Joint Innovation Labs, which feature full-stack capabilities, hands-on learning, and an integrated six-in-one system. These labs combine multi-simulation, real-world cases, and automated assessment, powered by a smart IoT edge computing platform for scenario-based learning and competition-driven training.
+                    </p>
+                    <p class="intro-text-en" style="margin-top: 16px;">
+                        Based on Huawei's proprietary technology system, the college promotes deeper industry-education integration and enhances its social service capacity through government-enterprise-university collaboration. It offers Huawei certification training, scenario-based project practice, and digital leadership workshops for both current students and professionals to cultivate ICT professionals with interdisciplinary skills and digital management talents.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Screen 3: Highlights ===== -->
+        <section class="section highlights-section" id="highlights">
+            <div class="animate-on-scroll">
+                <div class="section-label">HIGHLIGHTS</div>
+                <h2 class="section-title">特色亮点</h2>
+            </div>
+
+            <div class="highlights-grid animate-on-scroll">
+                <div class="highlight-card">
+                    <div class="highlight-icon">🔬</div>
+                    <div class="highlight-number">26</div>
+                    <div class="highlight-unit">间专业实验室</div>
+                    <div class="highlight-name">前沿领域全覆盖</div>
+                    <div class="highlight-desc">鸿蒙 · 昇腾AI · 鲲鹏云 · 5G通信</div>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">🏗️</div>
+                    <div class="highlight-number">5000+</div>
+                    <div class="highlight-unit">平方米</div>
+                    <div class="highlight-name">现代化教学空间</div>
+                    <div class="highlight-desc">教学 · 科研 · 实践一体化平台</div>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">🖥️</div>
+                    <div class="highlight-number">VUE</div>
+                    <div class="highlight-unit">考试中心</div>
+                    <div class="highlight-name">权威认证体系</div>
+                    <div class="highlight-desc">华为官方认证考试配套服务</div>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">⭐</div>
+                    <div class="highlight-number">2</div>
+                    <div class="highlight-unit">间创新实验室</div>
+                    <div class="highlight-name">星辰联合创新实验室</div>
+                    <div class="highlight-desc">全栈能力 · 六位一体 · 智能物联</div>
+                </div>
+
+                <div class="highlight-card highlight-card-wide">
+                    <div class="highlight-icon">🤖</div>
+                    <div class="highlight-info">
+                        <div class="highlight-name">先进设备配置</div>
+                        <div class="highlight-desc">华为昇腾GPU服务器 · 核心交换机 · 鸿蒙智能实践台 · 大模型实践箱等数十种先进设备</div>
+                    </div>
+                </div>
+
+                <div class="highlight-card highlight-card-wide">
+                    <div class="highlight-icon">🎓</div>
+                    <div class="highlight-info">
+                        <div class="highlight-name">产教深度融合</div>
+                        <div class="highlight-desc">政校企协同育人 · 华为认证培训 · 场景化项目实践 · 数字化领导力研修班</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lab-images animate-on-scroll">
+                <div class="lab-img-wrapper">
+                    <img src="images/lab1.jpg" alt="实验室设备">
+                    <div class="lab-img-label">华为ICT培训教室</div>
+                </div>
+                <div class="lab-img-wrapper">
+                    <img src="images/lab2.jpg" alt="鸿蒙实训套件">
+                    <div class="lab-img-label">鸿蒙智能实训套件</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Screen 4: Photo Carousel ===== -->
+        <section class="section carousel-section" id="gallery">
+            <div style="padding: 0 24px;" class="animate-on-scroll">
+                <div class="section-label">GALLERY</div>
+                <h2 class="section-title">学院风采</h2>
+            </div>
+
+            <div class="carousel-wrapper" style="margin-top: 24px;">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="images/slide1.jpg" alt="学院实景">
+                        <div class="carousel-slide-caption">华为科技展厅</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/slide2.jpg" alt="学院实景">
+                        <div class="carousel-slide-caption">智能安防实验室</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/slide3.jpg" alt="学院实景">
+                        <div class="carousel-slide-caption">华为ICT Academy 实训基地</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/slide4.jpg" alt="学院实景">
+                        <div class="carousel-slide-caption">昇腾AI数据中心</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/slide5.jpg" alt="学院实景">
+                        <div class="carousel-slide-caption">ICT人才培养基地</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">‹</button>
+                <div class="carousel-dots" id="carouselDots">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                    <div class="carousel-dot" data-index="3"></div>
+                    <div class="carousel-dot" data-index="4"></div>
+                </div>
+                <button class="carousel-btn" id="nextBtn">›</button>
+            </div>
+        </section>
+
+        <!-- ===== Screen 5: QR Code & Ending ===== -->
+        <section class="section ending-section" id="ending">
+            <div class="animate-on-scroll">
+                <div class="ending-logo">🎓</div>
+                <h2 class="ending-title">感谢关注</h2>
+                <p class="ending-subtitle">THANK YOU FOR YOUR ATTENTION</p>
+            </div>
+
+            <div class="animate-on-scroll">
+                <div class="qr-container">
+                    <img id="qrCode" src="" alt="分享二维码">
+                </div>
+                <p class="qr-hint">扫描二维码 · 分享给更多人</p>
+            </div>
+
+            <div class="animate-on-scroll">
+                <p class="ending-message">
+                    科技赋能教育，产教融合创新<br>
+                    华为-沈工现代产业学院<br>
+                    期待与您共创ICT未来
+                </p>
+            </div>
+
+            <div class="animate-on-scroll">
+                <div class="ending-divider"></div>
+                <p class="ending-footer">
+                    © 2024 华为-沈工现代产业学院<br>
+                    Huawei-SIT Modern Industrial College
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ===== Particles =====
+        (function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                particle.style.width = (Math.random() * 2 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        })();
+
+        // ===== Navigation Bar =====
+        const navBar = document.getElementById('navBar');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionDots = document.querySelectorAll('.section-dot');
+        const progressBar = document.getElementById('progressBar');
+        const backToTop = document.getElementById('backToTop');
+        const sections = ['hero', 'intro', 'highlights', 'gallery', 'ending'];
+
+        // Show/hide nav bar based on scroll
+        let lastScrollY = 0;
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // Show nav bar after scrolling past hero
+            if (scrollY > windowHeight * 0.3) {
+                navBar.classList.add('visible');
+                document.getElementById('sectionDots').classList.add('visible');
+            } else {
+                navBar.classList.remove('visible');
+                document.getElementById('sectionDots').classList.remove('visible');
+            }
+
+            // Show back to top button
+            if (scrollY > windowHeight * 1.5) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+
+            // Update progress bar
+            const progress = (scrollY / (docHeight - windowHeight)) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Update active section
+            let currentSection = 'hero';
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+
+            // Update nav links
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.dataset.section === currentSection);
+            });
+
+            // Update section dots
+            sectionDots.forEach(dot => {
+                dot.classList.toggle('active', dot.dataset.section === currentSection);
+            });
+
+            lastScrollY = scrollY;
+        }, { passive: true });
+
+        // Nav link click handler
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const sectionId = link.dataset.section;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Section dots click handler
+        sectionDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.dataset.section;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Back to top click handler
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== Scroll Animations =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ===== Number Counter Animation =====
+        function animateCounter(element, target, duration = 1500) {
+            const start = 0;
+            const startTime = performance.now();
+            const isNumber = !isNaN(parseInt(target));
+            
+            if (!isNumber) {
+                element.textContent = target;
+                return;
+            }
+
+            const targetNum = parseInt(target);
+            const suffix = target.replace(/[0-9]/g, '');
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (targetNum - start) * easeProgress);
+                element.textContent = current + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Counter observer
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = 'true';
+                    const target = entry.target.textContent;
+                    animateCounter(entry.target, target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.highlight-number').forEach(el => counterObserver.observe(el));
+
+        // ===== Stagger Animation for Cards =====
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.highlight-card');
+                    cards.forEach((card, i) => {
+                        card.style.animationDelay = `${i * 0.1}s`;
+                        card.classList.add('stagger-item', 'visible');
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.highlights-grid').forEach(el => staggerObserver.observe(el));
+
+        // ===== Parallax Effect for Hero =====
+        const heroBg = document.querySelector('.hero-bg');
+        window.addEventListener('scroll', () => {
+            if (heroBg) {
+                const scrollY = window.scrollY;
+                heroBg.style.transform = `translateY(${scrollY * 0.3}px)`;
+            }
+        }, { passive: true });
+
+        // ===== Carousel =====
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.carousel-slide').length;
+
+        function goToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) goToSlide(currentSlide + 1);
+                else goToSlide(currentSlide - 1);
+            }
+        }, { passive: true });
+
+        // Auto-play
+        let autoPlay = setInterval(() => goToSlide(currentSlide + 1), 4000);
+        carouselWrapper.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
+        carouselWrapper.addEventListener('touchend', () => {
+            autoPlay = setInterval(() => goToSlide(currentSlide + 1), 4000);
+        }, { passive: true });
+
+        // ===== QR Code Generation =====
+        (function generateQR() {
+            const qrImg = document.getElementById('qrCode');
+            const currentURL = window.location.href;
+            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(currentURL) + '&bgcolor=ffffff&color=0a0e1a';
+        })();
+
+        // ===== Touch Ripple Effect =====
+        document.querySelectorAll('.highlight-card').forEach(card => {
+            card.addEventListener('touchstart', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const y = e.touches[0].clientY - rect.top;
+                
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    background: radial-gradient(circle, rgba(207,10,44,0.3) 0%, transparent 70%);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: rippleEffect 0.6s ease-out forwards;
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                `;
+                card.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            }, { passive: true });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rippleEffect {
+                to {
+                    transform: translate(-50%, -50%) scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ===== Smooth Section Transitions =====
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transition = 'background 0.3s';
+            });
+        });
+    </script>
+</body>
+</html>
