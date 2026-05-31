@@ -16,21 +16,21 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
-            background: #0a0e1a;
-            color: #ffffff;
+            font-family: "SimHei", "Source Han Sans CN", "Noto Sans SC", "Microsoft YaHei", Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            font-size: 16px;
         }
 
-        /* ===== Scroll Container ===== */
         .page-container {
             max-width: 100vw;
             min-height: 100vh;
             position: relative;
         }
 
-        /* ===== Section Base ===== */
         .section {
             width: 100%;
             min-height: 100vh;
@@ -42,9 +42,9 @@
             overflow: hidden;
         }
 
-        /* ===== Screen 1: Hero ===== */
+        /* ===== Screen 1: Hero — 华为红 ===== */
         .hero-section {
-            background: linear-gradient(180deg, rgba(10,14,26,0.3) 0%, rgba(10,14,26,0.6) 40%, rgba(10,14,26,0.95) 100%);
+            background: linear-gradient(160deg, #2a0a10 0%, #4a1520 25%, #6a2030 50%, #5a1828 75%, #3a0f18 100%);
             position: relative;
         }
 
@@ -56,6 +56,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
+            opacity: 0.18;
+            filter: saturate(0.3) brightness(0.8);
         }
 
         .hero-overlay {
@@ -65,65 +67,232 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(180deg, 
-                rgba(10,14,26,0.2) 0%, 
-                rgba(10,14,26,0.4) 30%, 
-                rgba(10,14,26,0.85) 70%, 
-                rgba(10,14,26,1) 100%);
+                rgba(50,15,25,0.1) 0%, 
+                rgba(70,20,35,0.2) 30%, 
+                rgba(60,18,30,0.4) 60%, 
+                rgba(40,12,20,0.7) 100%);
             z-index: 1;
+        }
+
+        /* 科技感网格 */
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            background-image: 
+                linear-gradient(rgba(207,10,44,1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(207,10,44,1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.18; }
+        }
+
+        /* 科技感光圈 */
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(207,10,44,0.15) 0%, rgba(207,10,44,0.05) 40%, transparent 70%);
+            z-index: 1;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        /* 科技感扫描线 */
+        .hero-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 5%, rgba(207,10,44,0.5) 30%, rgba(255,100,120,0.7) 50%, rgba(207,10,44,0.5) 70%, transparent 95%);
+            z-index: 1;
+            animation: scanline 6s linear infinite;
+            box-shadow: 0 0 20px rgba(207,10,44,0.3), 0 0 60px rgba(207,10,44,0.1);
+        }
+
+        @keyframes scanline {
+            0% { top: -2px; }
+            100% { top: 100%; }
+        }
+
+        /* 科技感六边形装饰 */
+        .hero-hex {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-hex svg {
+            width: 100%;
+            height: 100%;
+        }
+        .hero-hex-tl {
+            top: 8%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+            animation: hexRotate 20s linear infinite;
+        }
+        .hero-hex-br {
+            bottom: 15%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            opacity: 0.12;
+            animation: hexRotate 25s linear infinite reverse;
+        }
+        .hero-hex-tr {
+            top: 12%;
+            right: 8%;
+            width: 60px;
+            height: 60px;
+            opacity: 0.1;
+            animation: hexRotate 18s linear infinite;
+        }
+        .hero-hex-bl {
+            bottom: 25%;
+            left: 8%;
+            width: 70px;
+            height: 70px;
+            opacity: 0.1;
+            animation: hexRotate 22s linear infinite reverse;
+        }
+        @keyframes hexRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 科技感数据流装饰 */
+        .tech-deco {
+            position: absolute;
+            z-index: 1;
+            font-family: "Courier New", monospace;
+            color: rgba(207,10,44,0.25);
+            font-size: 12px;
+            line-height: 1.6;
+            pointer-events: none;
+            white-space: pre;
+        }
+
+        .tech-deco-left {
+            top: 15%;
+            left: 12px;
+        }
+
+        .tech-deco-right {
+            bottom: 20%;
+            right: 12px;
+            text-align: right;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 0 24px;
-            animation: fadeInUp 1.2s ease-out;
+            padding: 0 32px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 6px 20px;
-            border: 1px solid rgba(207, 10, 44, 0.6);
+            padding: 5px 18px;
+            border: 1px solid rgba(207,10,44,0.5);
             border-radius: 20px;
-            font-size: 12px;
-            color: #ff4d6a;
+            font-size: 16px;
+            color: #ff6b7a;
             letter-spacing: 2px;
             margin-bottom: 24px;
-            background: rgba(207, 10, 44, 0.08);
+            background: rgba(207,10,44,0.08);
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .hero-title-cn {
             font-size: 36px;
             font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e6f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
+            line-height: 1.4;
+            text-shadow: 0 0 30px rgba(207,10,44,0.3), 0 0 60px rgba(207,10,44,0.1);
         }
 
         .hero-title-en {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 6px;
+            font-size: 16px;
+            color: rgba(255,180,180,0.6);
+            letter-spacing: 0;
             text-transform: uppercase;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .hero-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #cf0a2c, transparent);
-            margin: 0 auto 32px;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #cf0a2c, #ff4d6a);
+            margin: 0 auto 28px;
+            border-radius: 2px;
+            box-shadow: 0 0 12px rgba(207,10,44,0.5);
         }
 
         .hero-subtitle {
-            font-size: 20px;
-            font-weight: 300;
-            color: rgba(255,255,255,0.8);
-            letter-spacing: 3px;
-            margin-bottom: 60px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255,200,200,0.55);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
+        }
+
+        /* 科技感标签 */
+        .hero-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 50px;
+        }
+
+        .tech-tag {
+            padding: 5px 14px;
+            border: 1px solid rgba(207,10,44,0.4);
+            border-radius: 14px;
+            font-size: 13px;
+            color: rgba(255,180,180,0.7);
+            letter-spacing: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgba(207,10,44,0.08);
+            box-shadow: 0 0 12px rgba(207,10,44,0.1), inset 0 0 8px rgba(207,10,44,0.05);
+            animation: tagGlow 3s ease-in-out infinite;
+        }
+
+        .tech-tag:nth-child(2) { animation-delay: 0.6s; }
+        .tech-tag:nth-child(3) { animation-delay: 1.2s; }
+        .tech-tag:nth-child(4) { animation-delay: 1.8s; }
+        .tech-tag:nth-child(5) { animation-delay: 2.4s; }
+
+        @keyframes tagGlow {
+            0%, 100% { box-shadow: 0 0 12px rgba(207,10,44,0.1), inset 0 0 8px rgba(207,10,44,0.05); border-color: rgba(207,10,44,0.4); }
+            50% { box-shadow: 0 0 20px rgba(207,10,44,0.25), inset 0 0 12px rgba(207,10,44,0.1); border-color: rgba(207,10,44,0.6); }
         }
 
         .scroll-indicator {
@@ -140,48 +309,53 @@
         }
 
         .scroll-indicator span {
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 2px;
+            font-size: 12px;
+            color: rgba(255,160,160,0.35);
+            letter-spacing: 3px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .scroll-arrow {
-            width: 20px;
-            height: 20px;
-            border-right: 1.5px solid rgba(255,255,255,0.3);
-            border-bottom: 1.5px solid rgba(255,255,255,0.3);
+            width: 18px;
+            height: 18px;
+            border-right: 1.5px solid rgba(255,160,160,0.25);
+            border-bottom: 1.5px solid rgba(255,160,160,0.25);
             transform: rotate(45deg);
         }
 
         /* ===== Screen 2: Introduction ===== */
         .intro-section {
-            background: linear-gradient(180deg, #0a0e1a 0%, #0d1225 50%, #0a0e1a 100%);
-            padding: 60px 24px;
+            background: #ffffff;
+            padding: 64px 28px;
         }
 
         .section-label {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 11px;
+            font-size: 16px;
             color: #cf0a2c;
-            letter-spacing: 3px;
+            letter-spacing: 0;
             text-transform: uppercase;
             margin-bottom: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
         }
 
         .section-label::before {
             content: '';
             width: 24px;
-            height: 1px;
+            height: 2px;
             background: #cf0a2c;
         }
 
         .section-title {
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 32px;
-            letter-spacing: 2px;
+            margin-bottom: 36px;
+            letter-spacing: 3px;
+            color: #0a0a0a;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
         }
 
         .intro-block {
@@ -189,40 +363,45 @@
         }
 
         .intro-block-title {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 2px;
+            font-size: 16px;
+            color: #999999;
+            letter-spacing: 0;
             text-transform: uppercase;
             margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .intro-text {
-            font-size: 15px;
-            line-height: 1.9;
-            color: rgba(255,255,255,0.75);
+            font-size: 16px;
+            line-height: 2;
+            color: #333333;
             text-align: justify;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
         }
 
         .intro-text-en {
-            font-size: 13px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.5);
-            text-align: justify;
+            font-size: 16px;
+            line-height: 1.9;
+            color: #555555;
+            text-align: left;
+            word-break: normal;
+            overflow-wrap: break-word;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .lang-divider {
             width: 100%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            margin: 32px 0;
+            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+            margin: 36px 0;
         }
 
         /* ===== Screen 3: Highlights ===== */
         .highlights-section {
-            background: linear-gradient(180deg, #0a0e1a 0%, #0f1628 50%, #0a0e1a 100%);
-            padding: 60px 24px;
+            background: #fafafa;
+            padding: 64px 28px;
         }
 
         .highlights-grid {
@@ -233,14 +412,15 @@
         }
 
         .highlight-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
             border-radius: 16px;
             padding: 24px 16px;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
         }
 
         .highlight-card::before {
@@ -249,8 +429,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #cf0a2c, transparent);
+            height: 3px;
+            background: linear-gradient(90deg, #cf0a2c, #ff4d6a);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -267,32 +447,37 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
+            transition: transform 0.3s;
         }
 
         .highlight-number {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: #cf0a2c;
             margin-bottom: 4px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .highlight-unit {
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
+            font-size: 16px;
+            color: #888888;
             margin-bottom: 8px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .highlight-name {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
-            color: rgba(255,255,255,0.9);
+            color: #1a1a1a;
             margin-bottom: 6px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .highlight-desc {
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            line-height: 1.5;
+            font-size: 16px;
+            color: #888888;
+            line-height: 1.6;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .highlight-card-wide {
@@ -313,7 +498,6 @@
             flex: 1;
         }
 
-        /* Lab Images */
         .lab-images {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -339,16 +523,17 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            font-size: 11px;
-            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         /* ===== Screen 4: Photo Carousel ===== */
         .carousel-section {
-            background: #0a0e1a;
-            padding: 60px 0;
+            background: #ffffff;
+            padding: 64px 0;
         }
 
         .carousel-wrapper {
@@ -380,11 +565,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 24px 20px 16px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            font-size: 13px;
-            color: rgba(255,255,255,0.9);
+            padding: 28px 24px 18px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            font-size: 16px;
+            color: rgba(255,255,255,0.95);
             letter-spacing: 1px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .carousel-controls {
@@ -399,9 +585,9 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.6);
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            color: #666666;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -411,7 +597,7 @@
         }
 
         .carousel-btn:active {
-            background: rgba(207, 10, 44, 0.2);
+            background: #cf0a2c;
             border-color: #cf0a2c;
             color: #fff;
         }
@@ -425,7 +611,7 @@
             width: 6px;
             height: 6px;
             border-radius: 3px;
-            background: rgba(255,255,255,0.2);
+            background: #dddddd;
             transition: all 0.3s;
             cursor: pointer;
         }
@@ -435,10 +621,69 @@
             background: #cf0a2c;
         }
 
-        /* ===== Screen 5: QR Code & Ending ===== */
+        /* ===== Screen 5: Project Info ===== */
+        .project-section {
+            background: #fafafa;
+            padding: 64px 28px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            background: rgba(207,10,44,0.06);
+            color: #cf0a2c;
+            border-radius: 12px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
+        }
+
+        .project-text {
+            font-size: 16px;
+            line-height: 2;
+            color: #555555;
+            text-align: justify;
+            margin-bottom: 20px;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
+        }
+
+        .project-text-en {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #888888;
+            text-align: left;
+            word-break: normal;
+            overflow-wrap: break-word;
+            font-family: Arial, Helvetica, sans-serif;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 20px;
+        }
+
+        /* ===== Screen 6: Ending — 华为红 ===== */
         .ending-section {
-            background: linear-gradient(180deg, #0a0e1a 0%, #0d1225 100%);
-            padding: 80px 24px 60px;
+            background: linear-gradient(160deg, #2a0a10 0%, #4a1520 50%, #3a0f18 100%);
+            padding: 80px 28px 60px;
             text-align: center;
         }
 
@@ -449,30 +694,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(207,10,44,0.3);
             border-radius: 50%;
             font-size: 24px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(207,10,44,0.06);
         }
 
         .ending-title {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 12px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            color: #ffffff;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
         }
 
         .ending-subtitle {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 2px;
+            font-size: 16px;
+            color: rgba(255,160,160,0.4);
+            letter-spacing: 0;
             margin-bottom: 40px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .qr-container {
             display: inline-block;
             padding: 20px;
-            background: rgba(255,255,255,0.95);
+            background: #ffffff;
             border-radius: 16px;
             margin-bottom: 24px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
@@ -485,66 +733,237 @@
         }
 
         .qr-hint {
-            font-size: 12px;
-            color: rgba(255,255,255,0.35);
+            font-size: 16px;
+            color: rgba(255,160,160,0.35);
             margin-bottom: 40px;
             letter-spacing: 1px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
         }
 
         .ending-message {
-            font-size: 15px;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.6);
-            max-width: 300px;
+            font-size: 16px;
+            line-height: 2;
+            color: rgba(255,200,200,0.55);
+            max-width: 320px;
             margin: 0 auto 40px;
+            font-family: "SimHei", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
         }
 
         .ending-divider {
             width: 40px;
             height: 1px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(207,10,44,0.2);
             margin: 0 auto 24px;
         }
 
         .ending-footer {
-            font-size: 11px;
-            color: rgba(255,255,255,0.2);
+            font-size: 16px;
+            color: rgba(255,160,160,0.25);
+            letter-spacing: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* ===== Navigation Bar ===== */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 16px;
+        }
+
+        .nav-bar.visible { transform: translateY(0); }
+
+        .nav-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        }
+
+        .nav-logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #cf0a2c, #e8384f);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #fff;
+            font-weight: 700;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: 28px;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            color: #999999;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            padding: 4px 0;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        }
+
+        .nav-link:hover { color: #1a1a1a; }
+        .nav-link.active { color: #cf0a2c; }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #cf0a2c;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after { width: 100%; }
+
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #cf0a2c, #ff4d6a);
+            z-index: 999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .section-dots {
+            position: fixed;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .section-dots.visible { opacity: 1; }
+
+        .section-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .section-dot:hover {
+            background: rgba(0,0,0,0.4);
+            transform: scale(1.2);
+        }
+
+        .section-dot.active {
+            background: #cf0a2c;
+            box-shadow: 0 0 8px rgba(207,10,44,0.4);
+        }
+
+        .section-dot-tooltip {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.85);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #fff;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        }
+
+        .section-dot:hover .section-dot-tooltip { opacity: 1; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #cf0a2c;
+            border: none;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(207,10,44,0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(207,10,44,0.4);
+        }
+
+        .back-to-top-icon {
+            width: 18px;
+            height: 18px;
+            border-left: 2px solid #fff;
+            border-top: 2px solid #fff;
+            transform: rotate(45deg);
+            margin-top: 4px;
         }
 
         /* ===== Animations ===== */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-8px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-4px);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-8px); }
+            60% { transform: translateX(-50%) translateY(-4px); }
         }
 
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
+            transform: translateY(24px);
+            transition: all 0.7s ease-out;
         }
 
         .animate-on-scroll.visible {
@@ -552,7 +971,7 @@
             transform: translateY(0);
         }
 
-        /* ===== Particles ===== */
+        /* ===== Particles — 华为红 ===== */
         .particles {
             position: absolute;
             top: 0;
@@ -568,281 +987,27 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(207, 10, 44, 0.3);
+            background: rgba(207, 10, 44, 0.6);
             border-radius: 50%;
             animation: float linear infinite;
+            box-shadow: 0 0 6px rgba(207,10,44,0.4);
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
-        /* ===== Responsive ===== */
-        @media (min-width: 414px) {
-            .hero-title-cn {
-                font-size: 42px;
-            }
-            .hero-subtitle {
-                font-size: 24px;
-            }
-            .section-title {
-                font-size: 32px;
-            }
-        }
-
-        /* Touch optimization */
-        .carousel-slide {
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        /* Smooth scroll snap for mobile */
-        .page-container {
-            scroll-snap-type: y proximity;
-        }
-
-        .section {
-            scroll-snap-align: start;
-        }
-
-        /* ===== Navigation Bar ===== */
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 56px;
-            background: rgba(10, 14, 26, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 0 16px;
-        }
-
-        .nav-bar.visible {
-            transform: translateY(0);
-        }
-
-        .nav-logo {
-            font-size: 14px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-logo-icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #cf0a2c, #ff4d6a);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            margin-left: 32px;
-        }
-
-        .nav-link {
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            padding: 4px 0;
-        }
-
-        .nav-link:hover {
-            color: rgba(255,255,255,0.9);
-        }
-
-        .nav-link.active {
-            color: #cf0a2c;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #cf0a2c;
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* ===== Progress Indicator ===== */
-        .progress-bar {
-            position: fixed;
-            top: 56px;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #cf0a2c, #ff4d6a);
-            z-index: 999;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        /* ===== Section Dots (Side Navigation) ===== */
-        .section-dots {
-            position: fixed;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .section-dots.visible {
-            opacity: 1;
-        }
-
-        .section-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .section-dot:hover {
-            background: rgba(255,255,255,0.5);
-            transform: scale(1.2);
-        }
-
-        .section-dot.active {
-            background: #cf0a2c;
-            box-shadow: 0 0 8px rgba(207, 10, 44, 0.5);
-        }
-
-        .section-dot-tooltip {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(10, 14, 26, 0.9);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.8);
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .section-dot:hover .section-dot-tooltip {
-            opacity: 1;
-        }
-
-        /* ===== Back to Top Button ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 24px;
-            right: 16px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(207, 10, 44, 0.8);
-            border: none;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(207, 10, 44, 0.3);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: #cf0a2c;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(207, 10, 44, 0.4);
-        }
-
-        .back-to-top-icon {
-            width: 20px;
-            height: 20px;
-            border-left: 2px solid #fff;
-            border-top: 2px solid #fff;
-            transform: rotate(45deg);
-            margin-top: 4px;
-        }
-
-        /* ===== Enhanced Card Animations ===== */
-        .highlight-card {
-            cursor: pointer;
-        }
-
+        .highlight-card { cursor: pointer; }
         .highlight-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(207, 10, 44, 0.3);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
+        .highlight-card:hover::before { opacity: 1; }
+        .highlight-card:hover .highlight-icon { transform: scale(1.1); }
 
-        .highlight-card:hover::before {
-            opacity: 1;
-        }
-
-        .highlight-card:hover .highlight-icon {
-            transform: scale(1.1);
-        }
-
-        .highlight-icon {
-            transition: transform 0.3s;
-        }
-
-        /* ===== Number Counter Animation ===== */
-        .counter-number {
-            display: inline-block;
-        }
-
-        /* ===== Stagger Animation ===== */
         .stagger-item {
             opacity: 0;
             transform: translateY(20px);
@@ -853,78 +1018,68 @@
         }
 
         @keyframes staggerFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== Parallax Effect ===== */
-        .parallax-bg {
-            transition: transform 0.1s linear;
+        @media (min-width: 414px) {
+            .hero-title-cn { font-size: 42px; }
+            .section-title { font-size: 32px; }
         }
 
-        /* ===== Glow Effect ===== */
-        .glow-effect {
-            position: relative;
+        .carousel-slide {
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        .glow-effect::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, rgba(207, 10, 44, 0.2), transparent, rgba(207, 10, 44, 0.1));
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .page-container {
+            scroll-snap-type: y proximity;
         }
 
-        .glow-effect:hover::after {
-            opacity: 1;
+        .section {
+            scroll-snap-align: start;
         }
 
-        /* ===== Pulse Animation ===== */
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        @keyframes rippleEffect {
+            to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
         }
 
-        .pulse-animation {
-            animation: pulse 2s ease-in-out infinite;
+        /* ===== 科技感统计条 ===== */
+        .tech-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            padding: 12px 0;
         }
 
-        /* ===== Shimmer Effect ===== */
-        @keyframes shimmer {
-            0% {
-                background-position: -200% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
+        .tech-stat {
+            text-align: center;
         }
 
-        .shimmer-text {
-            background: linear-gradient(90deg, 
-                rgba(255,255,255,0.8) 0%, 
-                rgba(255,255,255,1) 50%, 
-                rgba(255,255,255,0.8) 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
+        .tech-stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #cf0a2c;
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: 0 0 12px rgba(207,10,44,0.5), 0 0 24px rgba(207,10,44,0.2);
+        }
+
+        .tech-stat-label {
+            font-size: 11px;
+            color: rgba(255,160,160,0.4);
+            margin-top: 2px;
+            font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        }
+
+        .tech-stat-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(207,10,44,0.15);
+            align-self: center;
         }
     </style>
 </head>
 <body>
-    <!-- ===== Navigation Bar ===== -->
     <nav class="nav-bar" id="navBar">
         <div class="nav-logo">
             <div class="nav-logo-icon">H</div>
@@ -935,33 +1090,22 @@
             <span class="nav-link" data-section="intro">简介</span>
             <span class="nav-link" data-section="highlights">亮点</span>
             <span class="nav-link" data-section="gallery">风采</span>
+            <span class="nav-link" data-section="project">项目</span>
             <span class="nav-link" data-section="ending">联系</span>
         </div>
     </nav>
 
-    <!-- ===== Progress Bar ===== -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- ===== Section Dots ===== -->
     <div class="section-dots" id="sectionDots">
-        <div class="section-dot active" data-section="hero">
-            <span class="section-dot-tooltip">首页</span>
-        </div>
-        <div class="section-dot" data-section="intro">
-            <span class="section-dot-tooltip">简介</span>
-        </div>
-        <div class="section-dot" data-section="highlights">
-            <span class="section-dot-tooltip">亮点</span>
-        </div>
-        <div class="section-dot" data-section="gallery">
-            <span class="section-dot-tooltip">风采</span>
-        </div>
-        <div class="section-dot" data-section="ending">
-            <span class="section-dot-tooltip">联系</span>
-        </div>
+        <div class="section-dot active" data-section="hero"><span class="section-dot-tooltip">首页</span></div>
+        <div class="section-dot" data-section="intro"><span class="section-dot-tooltip">简介</span></div>
+        <div class="section-dot" data-section="highlights"><span class="section-dot-tooltip">亮点</span></div>
+        <div class="section-dot" data-section="gallery"><span class="section-dot-tooltip">风采</span></div>
+        <div class="section-dot" data-section="project"><span class="section-dot-tooltip">项目</span></div>
+        <div class="section-dot" data-section="ending"><span class="section-dot-tooltip">联系</span></div>
     </div>
 
-    <!-- ===== Back to Top ===== -->
     <button class="back-to-top" id="backToTop">
         <div class="back-to-top-icon"></div>
     </button>
@@ -971,14 +1115,75 @@
         <section class="section hero-section" id="hero">
             <img src="images/bg.jpg" alt="华为-沈工现代产业学院" class="hero-bg">
             <div class="hero-overlay"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-glow"></div>
+            <div class="hero-scanline"></div>
             <div class="particles" id="particles"></div>
+
+            <!-- 科技感六边形装饰 -->
+            <div class="hero-hex hero-hex-tl">
+                <svg viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="#cf0a2c" stroke-width="1.5"/><polygon points="50,18 82,34 82,66 50,82 18,66 18,34" fill="none" stroke="#cf0a2c" stroke-width="0.8"/><line x1="50" y1="3" x2="50" y2="18" stroke="#cf0a2c" stroke-width="0.5"/><line x1="97" y1="25" x2="82" y2="34" stroke="#cf0a2c" stroke-width="0.5"/><line x1="97" y1="75" x2="82" y2="66" stroke="#cf0a2c" stroke-width="0.5"/><line x1="50" y1="97" x2="50" y2="82" stroke="#cf0a2c" stroke-width="0.5"/><line x1="3" y1="75" x2="18" y2="66" stroke="#cf0a2c" stroke-width="0.5"/><line x1="3" y1="25" x2="18" y2="34" stroke="#cf0a2c" stroke-width="0.5"/></svg>
+            </div>
+            <div class="hero-hex hero-hex-br">
+                <svg viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="#cf0a2c" stroke-width="1.5"/><polygon points="50,18 82,34 82,66 50,82 18,66 18,34" fill="none" stroke="#cf0a2c" stroke-width="0.8"/><circle cx="50" cy="50" r="12" fill="none" stroke="#cf0a2c" stroke-width="0.6"/><circle cx="50" cy="50" r="3" fill="#cf0a2c" opacity="0.5"/></svg>
+            </div>
+            <div class="hero-hex hero-hex-tr">
+                <svg viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="#cf0a2c" stroke-width="1.2"/><polygon points="50,20 78,35 78,65 50,80 22,65 22,35" fill="none" stroke="#cf0a2c" stroke-width="0.6"/></svg>
+            </div>
+            <div class="hero-hex hero-hex-bl">
+                <svg viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="#cf0a2c" stroke-width="1.2"/><circle cx="50" cy="50" r="8" fill="none" stroke="#cf0a2c" stroke-width="0.5"/></svg>
+            </div>
+
+            <!-- 科技感数据装饰 -->
+            <div class="tech-deco tech-deco-left">ICT · AI · 5G
+HarmonyOS
+Ascend · Kunpeng
+Edge Computing
+Cloud Native</div>
+            <div class="tech-deco tech-deco-right">GPU Cluster
+Smart IoT
+Digital Twin
+VUE Certified
+2024 Built</div>
+
+            <!-- 科技感电路装饰线 -->
+            <svg class="circuit-lines" viewBox="0 0 400 800" preserveAspectRatio="none" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;opacity:0.18;pointer-events:none;">
+                <line x1="0" y1="120" x2="120" y2="120" stroke="#cf0a2c" stroke-width="1"/>
+                <line x1="120" y1="120" x2="120" y2="280" stroke="#cf0a2c" stroke-width="1"/>
+                <circle cx="120" cy="120" r="3" fill="#cf0a2c"/>
+                <circle cx="120" cy="280" r="2" fill="#cf0a2c"/>
+                <line x1="400" y1="200" x2="280" y2="200" stroke="#cf0a2c" stroke-width="1"/>
+                <line x1="280" y1="200" x2="280" y2="400" stroke="#cf0a2c" stroke-width="1"/>
+                <circle cx="280" cy="200" r="3" fill="#cf0a2c"/>
+                <circle cx="280" cy="400" r="2" fill="#cf0a2c"/>
+                <line x1="0" y1="500" x2="80" y2="500" stroke="#cf0a2c" stroke-width="1"/>
+                <line x1="80" y1="500" x2="80" y2="650" stroke="#cf0a2c" stroke-width="1"/>
+                <circle cx="80" cy="500" r="3" fill="#cf0a2c"/>
+                <circle cx="80" cy="650" r="2" fill="#cf0a2c"/>
+                <line x1="400" y1="600" x2="320" y2="600" stroke="#cf0a2c" stroke-width="1"/>
+                <line x1="320" y1="600" x2="320" y2="750" stroke="#cf0a2c" stroke-width="1"/>
+                <circle cx="320" cy="600" r="3" fill="#cf0a2c"/>
+                <circle cx="320" cy="750" r="2" fill="#cf0a2c"/>
+                <line x1="200" y1="0" x2="200" y2="60" stroke="#cf0a2c" stroke-width="0.5"/>
+                <line x1="200" y1="740" x2="200" y2="800" stroke="#cf0a2c" stroke-width="0.5"/>
+                <!-- 额外连接线 -->
+                <line x1="120" y1="280" x2="200" y2="350" stroke="#cf0a2c" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <line x1="280" y1="400" x2="200" y2="450" stroke="#cf0a2c" stroke-width="0.5" stroke-dasharray="4,4"/>
+                <circle cx="200" cy="350" r="2" fill="#cf0a2c" opacity="0.6"/>
+                <circle cx="200" cy="450" r="2" fill="#cf0a2c" opacity="0.6"/>
+                <line x1="50" y1="0" x2="50" y2="80" stroke="#cf0a2c" stroke-width="0.5"/>
+                <circle cx="50" cy="80" r="2" fill="#cf0a2c" opacity="0.4"/>
+                <line x1="350" y1="0" x2="350" y2="100" stroke="#cf0a2c" stroke-width="0.5"/>
+                <circle cx="350" cy="100" r="2" fill="#cf0a2c" opacity="0.4"/>
+                <line x1="50" y1="720" x2="50" y2="800" stroke="#cf0a2c" stroke-width="0.5"/>
+                <line x1="350" y1="700" x2="350" y2="800" stroke="#cf0a2c" stroke-width="0.5"/>
+            </svg>
+
             <div class="hero-content">
-                <div class="hero-badge">ICT TALENT DEMONSTRATION SITE</div>
                 <h1 class="hero-title-cn">华为-沈工现代产业学院</h1>
                 <p class="hero-title-en">Huawei-SIT Modern Industrial College</p>
-                <div class="hero-divider"></div>
-                <p class="hero-subtitle">沈阳工学院 · SIT</p>
             </div>
+
             <div class="scroll-indicator">
                 <span>向上滑动探索</span>
                 <div class="scroll-arrow"></div>
@@ -1013,6 +1218,9 @@
                 <div class="intro-block">
                     <div class="intro-block-title">English Introduction</div>
                     <p class="intro-text-en">
+                        Huawei-SIT Modern Industrial College
+                    </p>
+                    <p class="intro-text-en" style="margin-top: 16px;">
                         Huawei-SIT Modern Industrial College is a global demonstration site for ICT talent cultivation, jointly established by Shenyang Institute of Technology and Huawei. Completed in 2024, it covers an area of over 5,000 square meters. The college features 26 specialized laboratories in cutting-edge fields such as HarmonyOS development, Ascend AI, Kunpeng cloud computing, and 5G communication, along with a VUE exam center. It is also equipped with a wide range of advanced facilities, including Huawei Ascend GPU servers, core switches, HarmonyOS smart experiment platforms, and large-model practice kits, creating an integrated innovation platform for teaching, research, and practice.
                     </p>
                     <p class="intro-text-en" style="margin-top: 16px;">
@@ -1096,7 +1304,7 @@
 
         <!-- ===== Screen 4: Photo Carousel ===== -->
         <section class="section carousel-section" id="gallery">
-            <div style="padding: 0 24px;" class="animate-on-scroll">
+            <div style="padding: 0 28px;" class="animate-on-scroll">
                 <div class="section-label">GALLERY</div>
                 <h2 class="section-title">学院风采</h2>
             </div>
@@ -1139,7 +1347,26 @@
             </div>
         </section>
 
-        <!-- ===== Screen 5: QR Code & Ending ===== -->
+        <!-- ===== Screen 5: Project Info ===== -->
+        <section class="section project-section" id="project">
+            <div class="animate-on-scroll">
+                <div class="section-label">PROJECT</div>
+                <h2 class="section-title">一院一卡</h2>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-tag">国家级大创项目</div>
+                <h3 class="project-title">"一院一卡"：沈工产业学院双语文化名片设计与数字传播</h3>
+                <p class="project-text">
+                    本数字名片是沈阳工学院大学生创新创业训练计划项目《"一院一卡"：沈工产业学院双语文化名片设计与数字传播》的成果之一。项目为全校28个产业学院设计制作中英双语文化名片，探索"AI辅助+人工审校"的双语内容生产模式，服务产教融合成果的数字化传播。
+                </p>
+                <p class="project-text-en">
+                    This digital brochure is an outcome of the College Student Innovation and Entrepreneurship Training Program project titled "One College, One Card": Bilingual Cultural Identity Design and Digital Communication for SIT's Industrial Colleges. The project designs bilingual cultural cards for 28 industrial colleges at SIT, exploring an "AI-assisted + human-edited" model for bilingual content production to support the digital dissemination of industry-education integration achievements.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== Screen 6: Ending ===== -->
         <section class="section ending-section" id="ending">
             <div class="animate-on-scroll">
                 <div class="ending-logo">🎓</div>
@@ -1176,34 +1403,31 @@
         // ===== Particles =====
         (function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 35; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
                 particle.style.animationDelay = (Math.random() * 5) + 's';
-                particle.style.width = (Math.random() * 2 + 1) + 'px';
+                particle.style.width = (Math.random() * 3 + 1) + 'px';
                 particle.style.height = particle.style.width;
                 container.appendChild(particle);
             }
         })();
 
-        // ===== Navigation Bar =====
+        // ===== Navigation =====
         const navBar = document.getElementById('navBar');
         const navLinks = document.querySelectorAll('.nav-link');
         const sectionDots = document.querySelectorAll('.section-dot');
         const progressBar = document.getElementById('progressBar');
         const backToTop = document.getElementById('backToTop');
-        const sections = ['hero', 'intro', 'highlights', 'gallery', 'ending'];
+        const sections = ['hero', 'intro', 'highlights', 'gallery', 'project', 'ending'];
 
-        // Show/hide nav bar based on scroll
-        let lastScrollY = 0;
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const docHeight = document.documentElement.scrollHeight;
 
-            // Show nav bar after scrolling past hero
             if (scrollY > windowHeight * 0.3) {
                 navBar.classList.add('visible');
                 document.getElementById('sectionDots').classList.add('visible');
@@ -1212,18 +1436,15 @@
                 document.getElementById('sectionDots').classList.remove('visible');
             }
 
-            // Show back to top button
             if (scrollY > windowHeight * 1.5) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
             }
 
-            // Update progress bar
             const progress = (scrollY / (docHeight - windowHeight)) * 100;
             progressBar.style.width = progress + '%';
 
-            // Update active section
             let currentSection = 'hero';
             sections.forEach(sectionId => {
                 const section = document.getElementById(sectionId);
@@ -1235,123 +1456,78 @@
                 }
             });
 
-            // Update nav links
-            navLinks.forEach(link => {
-                link.classList.toggle('active', link.dataset.section === currentSection);
-            });
-
-            // Update section dots
-            sectionDots.forEach(dot => {
-                dot.classList.toggle('active', dot.dataset.section === currentSection);
-            });
-
-            lastScrollY = scrollY;
+            navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === currentSection));
+            sectionDots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === currentSection));
         }, { passive: true });
 
-        // Nav link click handler
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                const sectionId = link.dataset.section;
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
+                const section = document.getElementById(link.dataset.section);
+                if (section) section.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Section dots click handler
         sectionDots.forEach(dot => {
             dot.addEventListener('click', () => {
-                const sectionId = dot.dataset.section;
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                }
+                const section = document.getElementById(dot.dataset.section);
+                if (section) section.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Back to top click handler
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         // ===== Scroll Animations =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.15 });
-
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-        // ===== Number Counter Animation =====
+        // ===== Counter Animation =====
         function animateCounter(element, target, duration = 1500) {
-            const start = 0;
             const startTime = performance.now();
             const isNumber = !isNaN(parseInt(target));
-            
-            if (!isNumber) {
-                element.textContent = target;
-                return;
-            }
-
+            if (!isNumber) { element.textContent = target; return; }
             const targetNum = parseInt(target);
             const suffix = target.replace(/[0-9]/g, '');
-
             function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
+                const progress = Math.min((currentTime - startTime) / duration, 1);
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
-                const current = Math.floor(start + (targetNum - start) * easeProgress);
-                element.textContent = current + suffix;
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                } else {
-                    element.textContent = target;
-                }
+                element.textContent = Math.floor(targetNum * easeProgress) + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+                else element.textContent = target;
             }
-
             requestAnimationFrame(update);
         }
 
-        // Counter observer
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.counted) {
                     entry.target.dataset.counted = 'true';
-                    const target = entry.target.textContent;
-                    animateCounter(entry.target, target);
+                    animateCounter(entry.target, entry.target.textContent);
                 }
             });
         }, { threshold: 0.5 });
-
         document.querySelectorAll('.highlight-number').forEach(el => counterObserver.observe(el));
 
-        // ===== Stagger Animation for Cards =====
+        // ===== Stagger Animation =====
         const staggerObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const cards = entry.target.querySelectorAll('.highlight-card');
-                    cards.forEach((card, i) => {
+                    entry.target.querySelectorAll('.highlight-card').forEach((card, i) => {
                         card.style.animationDelay = `${i * 0.1}s`;
                         card.classList.add('stagger-item', 'visible');
                     });
                 }
             });
         }, { threshold: 0.2 });
-
         document.querySelectorAll('.highlights-grid').forEach(el => staggerObserver.observe(el));
 
-        // ===== Parallax Effect for Hero =====
+        // ===== Parallax =====
         const heroBg = document.querySelector('.hero-bg');
         window.addEventListener('scroll', () => {
-            if (heroBg) {
-                const scrollY = window.scrollY;
-                heroBg.style.transform = `translateY(${scrollY * 0.3}px)`;
-            }
+            if (heroBg) heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
         }, { passive: true });
 
         // ===== Carousel =====
@@ -1367,92 +1543,40 @@
             if (index >= totalSlides) index = 0;
             currentSlide = index;
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
         }
 
         prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
         nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
-        });
+        dots.forEach(dot => dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index))));
 
-        // Touch swipe
         let touchStartX = 0;
-        let touchEndX = 0;
         const carouselWrapper = document.querySelector('.carousel-wrapper');
-
-        carouselWrapper.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
+        carouselWrapper.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         carouselWrapper.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) goToSlide(currentSlide + 1);
-                else goToSlide(currentSlide - 1);
-            }
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) { diff > 0 ? goToSlide(currentSlide + 1) : goToSlide(currentSlide - 1); }
         }, { passive: true });
 
-        // Auto-play
         let autoPlay = setInterval(() => goToSlide(currentSlide + 1), 4000);
         carouselWrapper.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
-        carouselWrapper.addEventListener('touchend', () => {
-            autoPlay = setInterval(() => goToSlide(currentSlide + 1), 4000);
-        }, { passive: true });
+        carouselWrapper.addEventListener('touchend', () => { autoPlay = setInterval(() => goToSlide(currentSlide + 1), 4000); }, { passive: true });
 
-        // ===== QR Code Generation =====
+        // ===== QR Code =====
         (function generateQR() {
             const qrImg = document.getElementById('qrCode');
-            const currentURL = window.location.href;
-            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(currentURL) + '&bgcolor=ffffff&color=0a0e1a';
+            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(window.location.href) + '&bgcolor=ffffff&color=cf0a2c';
         })();
 
-        // ===== Touch Ripple Effect =====
+        // ===== Ripple =====
         document.querySelectorAll('.highlight-card').forEach(card => {
             card.addEventListener('touchstart', function(e) {
                 const rect = card.getBoundingClientRect();
-                const x = e.touches[0].clientX - rect.left;
-                const y = e.touches[0].clientY - rect.top;
-                
                 const ripple = document.createElement('div');
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: 100px;
-                    height: 100px;
-                    background: radial-gradient(circle, rgba(207,10,44,0.3) 0%, transparent 70%);
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%) scale(0);
-                    animation: rippleEffect 0.6s ease-out forwards;
-                    left: ${x}px;
-                    top: ${y}px;
-                    pointer-events: none;
-                `;
+                ripple.style.cssText = `position:absolute;width:100px;height:100px;background:radial-gradient(circle,rgba(207,10,44,0.2) 0%,transparent 70%);border-radius:50%;transform:translate(-50%,-50%) scale(0);animation:rippleEffect 0.6s ease-out forwards;left:${e.touches[0].clientX - rect.left}px;top:${e.touches[0].clientY - rect.top}px;pointer-events:none;`;
                 card.appendChild(ripple);
-                
                 setTimeout(() => ripple.remove(), 600);
             }, { passive: true });
-        });
-
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rippleEffect {
-                to {
-                    transform: translate(-50%, -50%) scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // ===== Smooth Section Transitions =====
-        document.querySelectorAll('.section').forEach(section => {
-            section.addEventListener('mouseenter', function() {
-                this.style.transition = 'background 0.3s';
-            });
         });
     </script>
 </body>
